@@ -188,7 +188,7 @@ body{
     background-position: 0px 0px;
 }
 
-.center-more:hover::after{
+.center-more.active::after{
     background-position: 0px -6px;
 }
 
@@ -221,7 +221,7 @@ body{
     display: block;
     position: relative;
     padding: 13px 0;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
 }
 
 .header-main-left{
@@ -231,7 +231,7 @@ body{
 }
 
 .nav{
-    background-color: yellow;
+    /* background-color: yellow; */
     position: relative;
     display: inline-block;
     padding-top: 12px;
@@ -298,7 +298,7 @@ body{
 }
 
 /* 전체메뉴 */
-.all-menu-area{
+.all-menu-area {
     position: absolute;
     left: 0;
     top: 12px;
@@ -313,6 +313,7 @@ body{
     top: 41px;
     width: 210px;
     height: 0;
+    background-color: #fff;
     border: 1px solid #ddd;
     box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
     visibility: hidden;
@@ -320,12 +321,12 @@ body{
     transition: width 0.5s;
 }
 
-.all-menu-area:hover .all-menu{
+.all-menu-area:hover .all-menu {
     height: calc(100vh - 105px - 128px);
     visibility: visible;
 }
 
-.all-menu:hover{
+.all-menu.active{
     width: 420px;
 }
 
@@ -337,6 +338,19 @@ body{
     background-color: #fff;
     overflow: auto;
     /* 여기에 스크롤을 걸어준다. */
+    overflow-y: overlay;
+
+}
+
+.all-menu-cate::-webkit-scrollbar{
+    width: 10px;
+}
+
+.all-menu-cate::-webkit-scrollbar-thumb{
+    background-color: #afafaf;
+    border-radius: 10px;
+    background-clip: padding-box;
+	border: 2px solid transparent;
 }
 
 .cate-list{
@@ -484,9 +498,11 @@ body{
 
 .all-menu-cate-wrap{
     position: absolute;
-    left: 219px;
+    left: 210px;
     top: 0;
-    width: 210px;
+    width: 219px;
+    height: calc(100vh - 105px - 128px);
+    background-color: #f9f9f9;
 }
 
    /* cate-depth2-list를 한 자리에 모음. */
@@ -495,7 +511,7 @@ body{
     left: 0;
     top: 0;
     width: 100%;
-    padding: 0 24px;
+    padding: 15px;
 }
 
 .cate-depth2-list > li{
@@ -537,11 +553,11 @@ body{
     margin-left: 2px;
 }
 
-.join-bt:active{
+.join-bt.active{
     color: #76bd42;
 }
 
-.join-bt:active .join-bt-icon{
+.join-bt.active .join-bt-icon{
     background-position: 0px -8px;
 }
 
@@ -599,7 +615,7 @@ body{
     line-height: 19px;
     vertical-align: 5px;
     cursor: pointer;
-    background-color: #000;
+    /* background-color: #000; */
 }
 
 .more-menu-icon{
@@ -614,12 +630,11 @@ body{
 
 /* ===============더보기 active================ */
 
-.more-menu-bt:active > span{
-    /* color: #76bd42; */
+.more-menu-bt.active > span{
     visibility: hidden;
 }
 
-.more-menu-bt::after{
+.more-menu-bt.active::after{
     content: "접기";
     position: absolute;
     display: inline-block;
@@ -629,7 +644,7 @@ body{
     display: none;
 }
 
-.more-menu-bt:active::after{
+.more-menu-bt.active::after{
     display: block;
     top: 0;
     left: 9px;
@@ -637,7 +652,7 @@ body{
 
 /* ===============// 더보기 active================ */
 
-.more-menu-bt:active .more-menu-icon{
+.more-menu-bt.active .more-menu-icon{
     background-position: 0 -6px;
 }
 
@@ -713,3 +728,21 @@ body{
     font-size: 11px;
     font-weight: 700;
 }
+
+/* 비주얼 */
+.visual{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 410px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.visual-slide{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
