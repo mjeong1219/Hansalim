@@ -33,11 +33,21 @@ xhttp.onreadystatechange = function(event){
         TODAY_GOOD = obj.todaygood;
         SALE_GOOD = obj.salegood;
         NEW_GOOD = obj.newgood;
+        RECOMMEND_GOOD = obj.recommendgood;
+        POPULAR_ICON = obj.popularicon;
+        POPULAR_GOOD = obj.populargood;
+        BRAND_ARR = obj.brandarr;
+        BANNER_ARR = obj.bannerarr;
         
-        showVisual(); // 비주얼을 화면에 배치한다.
-        showTodayGood(); // 오늘의 상품을 화면에 배치
-        showSaleGood(); // 할인 상품을 화면에 배치
-        showNewGood(); // 신상품을 화면에 배치
+        showVisual(); // 비주얼을 화면에 배치
+        showTodayGood(); // 오늘의 물품을 화면에 배치
+        showSaleGood(); // 할인 물품을 화면에 배치
+        showNewGood(); // 새물품을 화면에 배치
+        showRecommendGood(); // 추천 물품을 화면에 배치
+        showPopularIcon(); // 인기 물품 아이콘을 화면에 배치
+        showPopularGood(); // 인기 물품을 화면에 배치
+        showBrandArr(); // 브랜드관을 화면에 배치
+        showBannerArr(); // 배너를 화면에 배치
     }
 }
 // 자료를 호출한다.
@@ -47,17 +57,33 @@ xhttp.send();
 // 비주얼 슬라이드
 let VISUAL_ARR;
 let visualTag = document.getElementById("data-visual"); // 슬라이드 바로 위 요소
-// 오늘 상품
+// 오늘의 물품
 let TODAY_GOOD;
 let todayTag = document.getElementById("data-today");
 let todayTag2 = document.getElementById("data-today2");
-// 할인 상품
+// 할인 물품
 let SALE_GOOD;
 let saleTag = document.getElementById("data-sale");
-// 신상품
+// 새물품
 let NEW_GOOD;
 let newTag = document.getElementById("data-new");
 let newListTag = document.getElementById("data-new-list");
+// 추천물품
+let RECOMMEND_GOOD;
+let recommendTag = document.getElementById("data-recommend");
+// 인기물품 아이콘
+let POPULAR_ICON;
+let popularIconTag = document.getElementById("data-popular-icon");
+// 인기물품 화면 출력
+let POPULAR_GOOD;
+let popularShow = 1; // 목록 중에 먼저 1번을 보여줌.
+let popularTag = document.getElementById("data-popular");
+// 브랜드관 화면 출력
+let BRAND_ARR;
+let brandTag = document.getElementById("data-brand");
+// 배너 화면 출력
+let BANNER_ARR;
+let bannerTag = document.getElementById("data-banner");
 
 // ==============================================================================
 
@@ -193,11 +219,11 @@ function showVisual(){
     VISUAL_ARR.forEach(function(item){
         const tag = `
         <div class="swiper-slide">
-        <div class="visual-slide-page">
-        <a href="${item.link}">
-        <img src="../images/${item.pic}" alt="${item.name}"/>
-        </a>
-        </div>
+            <div class="visual-slide-page">
+                <a href="${item.link}">
+                    <img src="../images/${item.pic}" alt="${item.name}"/>
+                </a>
+            </div>
         </div>`;
         // json의 변수를 가져와서 item으로 선언.
         html += tag; 
@@ -238,9 +264,9 @@ swVisualPlay.addEventListener("click", function(){
 }
 
 
-////오늘의 상품////
+////오늘의 물품////
 
-// 오늘의 상품 화면 출력 기능
+// 오늘의 물품 화면 출력 기능
 function showTodayGood() {
     let htmlTop = "";
     let htmlBottom = "";
@@ -307,9 +333,9 @@ function showTodayGood() {
 }
 
 
-//// 할인 상품 ////
+//// 할인 물품 ////
 
-// 할인 상품 화면 출력 기능
+// 할인 물품 화면 출력 기능
 function showSaleGood(){
     let html = `
     <div class="swiper sw-sale">
@@ -363,12 +389,12 @@ function showSaleGood(){
 }
 
 
-//// 신상품 ////
+//// 새물품 ////
 
-// 신상품 화면 출력 기능
+// 새물품 화면 출력 기능
 function showNewGood(){
     // 첫번째 화면 출력
-    let obj = NEW_GOOD[0]; // 0번째 인 것을 불러옴
+    let obj = NEW_GOOD[0]; // obj라는 변수를 0번째로 선언하고 불러옴
     let newGoodFirst = `
     <a href="${obj.link}" class="new-img">
         <img src="../images/${obj.pic}" alt="${obj.title}"/>
@@ -384,24 +410,272 @@ function showNewGood(){
 
     // 나머지 화면 출력 1~4번
     let html = "";
-    NEW_GOOD.forEach(function(item, index){
+    NEW_GOOD.forEach(function(item, index){ // item이라는 메서드가 존재.
+        // item의 인덱스를 불러온다. 그러나
         let tag = "";
-
         // 0번은 출력했으므로
         if(index !== 0){
-            let newGoodList = `
-            <a href="${obj.link}" class="new-img">
-                <img src="../images/${obj.pic}" alt="${obj.title}"/>
-            </a>
-            <a href="${obj.link}" class="new-title">
-                ${obj.title}
-            </a>
-            <a href="${obj.link}" class="new-txt">
-                ${obj.txt}
-            </a>
+            tag = `
+            <div class="new-box">
+                <a href="${item.link}" class="new-box-img">
+                    <img src="../images/${item.pic}" alt="${item.title}"/>
+                </a>
+                <a href="${item.link}" class="new-box-title">
+                    ${item.title}
+                </a>
+            </div>
             `;
-            newTagList.innerHTML = newGoodList;
         }
-        
+        html += tag;
+    });
+    newListTag.innerHTML = html;
+}
+
+
+//// 추천 물품 ////
+
+// 추천 물품 화면 출력 기능
+function showRecommendGood(){
+    let html = `
+    <div class="swiper sw-recommend">
+    <div class="swiper-wrapper">
+    `;
+    
+    RECOMMEND_GOOD.forEach(function(item){
+        // today와 똑같은 형태이므로 그대로 가져옴.
+        let tag = `
+        <div class="swiper-slide">
+            <div class="good-box">
+                <!-- 제품이미지 -->
+                <a href="${item.link}" class="good-img">
+                    <img src="../images/${item.pic}" alt="${item.name}">
+                    <span class="good-type">${item.tag}</span>
+                </a>
+                <!-- 제품정보 -->
+                <a href="${item.link}" class="good-info">
+                    <em>${item.name}</em>(<em>${item.unit}</em>)
+                </a>
+                <!-- 제품가격 -->
+                <a href="${item.link}" class="good-info-price">
+                    ${priceToString(item.price)}<em>원</em>
+                </a>
+                <!-- 장바구니 이미지 -->
+                <button class="good-add-cart"></button>
+            </div>
+        </div>
+        `;
+        html += tag;
+    });
+    html += `
+    </div>
+    </div>
+    `;
+    recommendTag.innerHTML = html;
+    const swRecommend = new Swiper(".sw-recommend", {
+        slidesPerView: 3, // 보여지는 슬라이드 개수
+        spaceBetween: 16, // 슬라이드 간의 간격
+        slidesPerGroup: 3, // 넘어가는 슬라이드 개수
+        navigation: {
+            prevEl: ".recommend .slide-prev",
+            nextEl: ".recommend .slide-next"
+        },
+        pagination: {
+            // 페이지 수 출력됨.
+            el: ".recommend .slide-pg",
+            type: "fraction" // type을 하지 않으면 점으로 나옴.
+        }
+    })
+}
+
+
+//// 인기 물품 ////
+
+// 인기 물품 카테고리 아이콘 화면 출력 기능
+
+function showPopularIcon(){
+    let html = `
+    <div class = "swiper sw-icon">
+    <div class = "swiper-wrapper">
+    `;
+    // 데이터 처리
+    POPULAR_ICON.forEach(function(item){
+        const tag = `
+        <div class = "swiper-slide">
+            <a href = "${item.link}">
+                <span class = "popular-cate-icon"
+                style = "
+                background : url('../images/${item.icon}') no-repeat;
+                background-position : 0px 0px;">
+                </span>
+                <span class = "popular-cate-name">${item.txt}</span>
+            </a>
+        </div>
+        `; // hover 시 변경을 위해 여기서 style을 줌.
+        html += tag;
+    });
+    html += `
+    </div>
+    </div>
+    `;
+    popularIconTag.innerHTML = html;
+    const swIcon = new Swiper(".sw-icon", {
+        slidesPerView: 7, // 보여지는 슬라이드 개수
+        spaceBetween: 10, // 슬라이드 간의 간격
+        slidesPerGroup: 7, // 넘어가는 슬라이드 개수
+        navigation: {
+            prevEl: ".popular-cate .popular-slide-prev",
+            nextEl: ".popular-cate .popular-slide-next"
+        }
+    });
+    const tag = document.querySelectorAll(".popular-slide a");
+    tag.forEach(function(item, index){
+        // 호버했을 때 이미지가 변경
+        item.addEventListener("mouseover", function(){
+            const spanTag = this.querySelector(".popular-cate-icon");
+            spanTag.style.backgroundPositionY = "-64px";
+        });
+        // 마우스 아웃했을 때 이미지 돌아감.
+        item.addEventListener("mouseout", function(){
+            const spanTag = this.querySelector(".popular-cate-icon");
+            spanTag.style.backgroundPositionY = "0";
+        });
+
+        // 클릭을 하면 버튼 (.popular-more)의 글자를
+        // 클릭된 타이틀의 글자로 변경한다.
+        item.addEventListener("click", function(event){
+            // a 태그이므로 href="#"이 적용되어 누르면 새로고침이 될 수 있기 때문에
+            // 버튼 기능만 하기 위해 preventDefault를 한다.
+            event.preventDefault();
+            const bt = document.querySelector(".popular-more");
+            const title = this.querySelector(".popular-cate-name"); // 왜 this?
+            bt.innerHTML = `${title.innerHTML} 물품 더보기`;
+
+            this.style.backgroundColor = "#fff";
+            this.style.border = "2px solid #76bd42";
+
+            // 하단의 목록을 갱신한다. 클릭하면 바뀌어야 하므로 이 안에 작성.
+            // 현재 클릭된 번호를 popularShow에 담는다.
+            popularShow = index; // 위에서 선언한 1이 index 임을 선언.
+            showPopularGood();
+        });
+    });
+}
+
+// 인기 물품 화면 출력 기능
+function showPopularGood(){
+    let html = "";
+    let popCate = "populargood-" + (popularShow + 1); // 인덱스 번호에 계속 +1을 함.
+    // console.log(POPULAR_GOOD[popCate]);
+    POPULAR_GOOD[popCate].forEach(function (item){ // 여러개이므로 foreach
+        let tag = `
+        <div class="good-box">
+            <!-- 제품이미지 -->
+            <a href="${item.link}" class="good-img">
+                <img src="images/${item.pic}" alt="${item.name}" />
+                <span class="good-type">${item.tag}</span>
+            </a>
+            <!-- 제품정보 -->
+            <a href="${item.link}" class="good-info">
+                <em>${item.name}</em>(<em>${item.unit}</em>)
+            </a>
+            <!-- 제품가격 -->
+            <a href="${item.link}" class="good-info-price">${priceToString(item.price)}<em>원</em></a>
+            <!-- 장바구니 -->
+            <button class="good-add-cart"></button>
+        </div>
+        `;
+        html += tag;
+        popularTag.innerHTML = html;
+    });
+}
+
+
+//// 브랜드관 ////
+
+// 브랜드관 화면 출력 기능
+function showBrandArr(){
+    let html=`
+    <div class="swiper sw-brand">
+    <div class="swiper-wrapper">
+    `;
+    BRAND_ARR.forEach(function(item){
+        let tag = `
+        <div class="swiper-slide">
+            <div class="brand-box">
+                <a href="${item.link}">
+                    <img src="../images/${item.pic}" alt="${item.name}"/>
+                    <p>${item.name}</p>
+                    <ul class="brand-info clearfix">
+                        <li>
+                            <span class="brand-info-title>${item.title1}</span>
+                            <span class="brand-info-value>${item.value1}</span>
+                        </li>
+                        <li>
+                            <span class="brand-info-title>${item.title2}</span>
+                            <span class="brand-info-value>${item.value2}</span>
+                        </li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+        `;
+        html += tag;
+    });
+    html += `
+    </div>
+    </div>
+    `;
+    brandTag.innerHTML = html;
+    const swBrand = new Swiper(".sw-brand", {
+        slidesPerView: 3, // 보여지는 슬라이드 개수
+        spaceBetween: 16, // 슬라이드 간의 간격
+        slidesPerGroup: 1, // 넘어가는 슬라이드 개수
+        navigation: {
+            prevEl: ".brand .slide-prev",
+            nextEl: ".brand .slide-next"
+        },
+        pagination: {
+            el: ".brand .slide-pg",
+            type: "fraction"
+        }
+    })
+}
+
+
+/// 배너 ////
+
+// 배너 화면 출력 기능
+function showBannerArr() {
+    let html = `
+    <div class = "swiper sw-banner">
+    <div class = "swiper-wrapper">
+    `;
+    BANNER_ARR.forEach(function(item){
+        let tag = `
+        <div class="swiper-slide">
+            <a href="${item.link}">
+                <img src = "../images/${item.image}" alt ="${item.title}"/>
+            </a>
+        </div>
+        `;
+        html += tag;
+    });
+    html += `
+    </div>
+    </div>
+    `;
+    bannerTag.innerHTML = html;
+    const swBanner = new Swiper(".sw-banner", {
+        loop: true,
+        autoplay: {
+        delay: 2500,
+        disableOnInteraction: false
+        },
+        slidesPerView: 2,
+        spaceBetween: 0,
+        navigation: {
+            prevEl: ".banner .slide-prev",
+            nextEl: ".banner .slide-next",
+        }
     });
 }
