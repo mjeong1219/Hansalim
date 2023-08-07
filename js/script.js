@@ -18,77 +18,6 @@ function priceToString(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// data.json을 로딩. 연결시켜준다.
-const xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function(event){
-    const req = event.target;
-    if(req.readyState === XMLHttpRequest.DONE){
-        const str = req.response;
-        // 글자로 온 데이터를 객체로 변환
-        // 글자가 json 규칙대로 만들어진 문자열.
-        // 그러므로 json 글자를 객체로 변환해서 활용한다.
-        let obj = JSON.parse(str);
-
-        VISUAL_ARR = obj.visual;
-        TODAY_GOOD = obj.todaygood;
-        SALE_GOOD = obj.salegood;
-        NEW_GOOD = obj.newgood;
-        RECOMMEND_GOOD = obj.recommendgood;
-        POPULAR_ICON = obj.popularicon;
-        POPULAR_GOOD = obj.populargood;
-        BRAND_ARR = obj.brandarr;
-        BANNER_ARR = obj.bannerarr;
-        SEASON_GOOD = obj.seasongood;
-        
-        showVisual(); // 비주얼을 화면에 배치
-        showTodayGood(); // 오늘의 물품을 화면에 배치
-        showSaleGood(); // 할인 물품을 화면에 배치
-        showNewGood(); // 새물품을 화면에 배치
-        showRecommendGood(); // 추천 물품을 화면에 배치
-        showPopularIcon(); // 인기 물품 아이콘을 화면에 배치
-        showPopularGood(); // 인기 물품을 화면에 배치
-        showBrandArr(); // 브랜드관을 화면에 배치
-        showBannerArr(); // 배너를 화면에 배치
-        showSeasonGood(); // 제철요리를 화면에 배치
-    }
-}
-// 자료를 호출한다.
-xhttp.open("GET", "data.json")
-// 웹브라우저 기능 실행 할 수 있도록 요청.
-xhttp.send();
-// 비주얼 슬라이드
-let VISUAL_ARR;
-let visualTag = document.getElementById("data-visual"); // 슬라이드 바로 위 요소
-// 오늘의 물품
-let TODAY_GOOD;
-let todayTag = document.getElementById("data-today");
-let todayTag2 = document.getElementById("data-today2");
-// 할인 물품
-let SALE_GOOD;
-let saleTag = document.getElementById("data-sale");
-// 새물품
-let NEW_GOOD;
-let newTag = document.getElementById("data-new");
-let newListTag = document.getElementById("data-new-list");
-// 추천물품
-let RECOMMEND_GOOD;
-let recommendTag = document.getElementById("data-recommend");
-// 인기물품 아이콘
-let POPULAR_ICON;
-let popularIconTag = document.getElementById("data-popular-icon");
-// 인기물품 화면 출력
-let POPULAR_GOOD;
-let popularShow = 1; // 목록 중에 먼저 1번을 보여줌.
-let popularTag = document.getElementById("data-popular");
-// 브랜드관 화면 출력
-let BRAND_ARR;
-let brandTag = document.getElementById("data-brand");
-// 배너 화면 출력
-let BANNER_ARR;
-let bannerTag = document.getElementById("data-banner");
-// 제철 요리 화면 출력
-let SEASON_GOOD;
-let seasonTag = document.getElementById("data-season");
 
 // ==============================================================================
 
@@ -213,7 +142,126 @@ cateLists.forEach(function(item,index){
     })
 })
 
+
+// =============================================================
+
+// 하단 패밀리 펼침 기능
+// 목록 열기 버튼
+const openBt = document.querySelector(".footer-link");
+// 목록 닫기 버튼
+const closeBt = document.querySelector(".family-close");
+// 보여질 패밀리 목록
+const family = document.querySelector(".family");
+// 기능처리
+openBt.addEventListener("click", function(){
+    family.classList.add("active");
+    this.classList.add("active");
+});
+closeBt.addEventListener("click", function(){
+    family.classList.remove("active");
+    openBt.classList.remove("active");
+})
+
+// 위로가기 기능
+const fixTopBt = document.querySelector(".fix-top")
+fixTopBt.addEventListener("click", function(){
+    // window.scrollTo(0, 0)
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    })
+})
+
+
+
 // =====================///////////========================================
+// data.json을 로딩. 연결시켜준다.
+const xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function(event){
+    const req = event.target;
+    if(req.readyState === XMLHttpRequest.DONE){
+        const str = req.response;
+        // 글자로 온 데이터를 객체로 변환
+        // 글자가 json 규칙대로 만들어진 문자열.
+        // 그러므로 json 글자를 객체로 변환해서 활용한다.
+        let obj = JSON.parse(str);
+
+        VISUAL_ARR = obj.visual;
+        TODAY_GOOD = obj.todaygood;
+        SALE_GOOD = obj.salegood;
+        NEW_GOOD = obj.newgood;
+        RECOMMEND_GOOD = obj.recommendgood;
+        POPULAR_ICON = obj.popularicon;
+        POPULAR_GOOD = obj.populargood;
+        BRAND_ARR = obj.brandarr;
+        BANNER_ARR = obj.bannerarr;
+        SEASON_GOOD = obj.seasongood;
+        REVIEW_ARR = obj.review;
+        NOTICE_ARR = obj.notice;
+        GOODNEWS_ARR = obj.goodnews;
+        
+        showVisual(); // 비주얼을 화면에 배치
+        showTodayGood(); // 오늘의 물품을 화면에 배치
+        showSaleGood(); // 할인 물품을 화면에 배치
+        showNewGood(); // 새물품을 화면에 배치
+        showRecommendGood(); // 추천 물품을 화면에 배치
+        showPopularIcon(); // 인기 물품 아이콘을 화면에 배치
+        showPopularGood(); // 인기 물품을 화면에 배치
+        showBrandArr(); // 브랜드관을 화면에 배치
+        showBannerArr(); // 배너를 화면에 배치
+        showSeasonGood(); // 제철요리를 화면에 배치
+        showReview(); // 리뷰를 화면에 배치
+        showNotice(); // 커뮤니티 공지사항 목록을 화면에 배치
+        showGoodNews(); // 커뮤니티 물품소식 목록을 화면에 배치
+    }
+}
+// 자료를 호출한다.
+xhttp.open("GET", "data.json")
+// 웹브라우저 기능 실행 할 수 있도록 요청.
+xhttp.send();
+// 비주얼 슬라이드
+let VISUAL_ARR;
+let visualTag = document.getElementById("data-visual"); // 슬라이드 바로 위 요소
+// 오늘의 물품
+let TODAY_GOOD;
+let todayTag = document.getElementById("data-today");
+let todayTag2 = document.getElementById("data-today2");
+// 할인 물품
+let SALE_GOOD;
+let saleTag = document.getElementById("data-sale");
+// 새물품
+let NEW_GOOD;
+let newTag = document.getElementById("data-new");
+let newListTag = document.getElementById("data-new-list");
+// 추천물품
+let RECOMMEND_GOOD;
+let recommendTag = document.getElementById("data-recommend");
+// 인기물품 아이콘
+let POPULAR_ICON;
+let popularIconTag = document.getElementById("data-popular-icon");
+// 인기물품 화면 출력
+let POPULAR_GOOD;
+let popularShow = 1; // 목록 중에 먼저 1번을 보여줌.
+let popularTag = document.getElementById("data-popular");
+// 브랜드관 화면 출력
+let BRAND_ARR;
+let brandTag = document.getElementById("data-brand");
+// 배너 화면 출력
+let BANNER_ARR;
+let bannerTag = document.getElementById("data-banner");
+// 제철 요리 화면 출력
+let SEASON_GOOD;
+let seasonTag = document.getElementById("data-season");
+// 리뷰 화면 출력
+let REVIEW_ARR;
+let reviewTag = document.getElementById("data-review");
+// 커뮤니티 공지사항 목록 화면 출력
+let NOTICE_ARR;
+let noticeTag = document.getElementById("data-notice");
+// 커뮤니티 물품소식 목록 화면 출력
+let GOODNEWS_ARR;
+let goodNewsTag = document.getElementById("data-goodnews");
+
 
 
 //// 비주얼 ////
@@ -785,4 +833,130 @@ function showBuyGood(){
         // 전체 체크 버튼이 해제 되어야 함.
         chkAll.checked = false;
     }
+}
+
+
+/// 리뷰 ////
+
+// 리뷰목록 화면 출력 기능
+function showReview() {
+    let html = `
+    <div class="swiper sw-review">
+    <div class="swiper-wrapper">
+    `
+    // 데이터 처리
+    REVIEW_ARR.forEach(function(item){
+        const tag = `
+        <div class="swiper-slide">
+            <div class="review-box">
+                <a href="${item.link}">
+                    <div class= "review-box-desc">
+                        <span class= " review-box-title">
+                            ${item.title}
+                        </span>
+                        <span class="review-box-star"> ${item.star} </span>
+                        <span class="review-box-img">
+                            <img src="../images/${item.pic}" alt="${item.title}"/>
+                        </span>
+                    </div>
+                    <p class="review-box-txt">
+                        ${item.txt}
+                    </p>
+                    <span class="review-box-user">${item.user} (${item.shop})</span>
+                </a>
+            </div>
+        </div>
+        `;
+        html += tag;
+    });
+    html += `
+    </div>
+    </div>
+    `;
+    reviewTag.innerHTML = html;
+    const swReview = new Swiper(".sw-review",{
+        slidesPerView: 3,
+        spaceBetween: 16,
+        slidesPerGroup: 3,
+        navigation:{
+            prevEl: ".review .slide-prev",
+            nextEl: ".review .slide-next"
+        },
+        pagination:{
+            el: ".review .slide-pg",
+            type: "fraction"
+        }
+    })
+}
+
+
+/// 커뮤니티 ////
+
+// 커뮤니티 공지사항 목록 화면 출력 기능
+function showNotice(){
+    let html = ""
+    // 데이터갱신
+    NOTICE_ARR.forEach(function(item){
+        const tag = `
+        <li>
+            <a href="${item.link}">
+                <span>
+                    ${item.title}
+                </span><em>${item.date}</em>
+            </a>
+        </li>
+        `;
+        html+= tag;
+    });
+    noticeTag.innerHTML = html;
+}
+
+// 커뮤니티 물품소식 목록 화면 출력 기능
+function showGoodNews(){
+    let html = ""
+    // 데이터갱신
+    GOODNEWS_ARR.forEach(function(item){
+        const tag = `
+        <li>
+            <a href="${item.link}">
+                <span>
+                    ${item.title}
+                </span><em>${item.date}</em>
+            </a>
+        </li>
+        `;
+        html+= tag;
+    });
+    goodNewsTag.innerHTML = html;
+}
+
+// 커뮤니티 탭메뉴
+// 탭버튼
+const tabBtArr = document.querySelectorAll(".community-bt");
+// 탭 내용
+const tabConArr = document.querySelectorAll(".community-notice dd");
+// 탭포커스
+let tabFocusIndex = 0;
+// 탭 버튼 클릭 처리
+tabBtArr.forEach(function(item, index){
+    item.addEventListener("click", function(){
+        tabFocusIndex = index;
+        tabFocusFn()
+    })
+})
+// 탭포커스 함수 생성
+function tabFocusFn(){
+    // 포커스 css를 적용 및 제거
+    // 일단 모두 제거한다.
+    tabBtArr.forEach(function(item){
+        item.classList.remove("community-bt-active")
+    })
+    // 인덱스에 해당하는 것만 적용
+    tabBtArr[tabFocusIndex].classList.add("community-bt-active")
+    // 아예 없다가 클릭했을 때마다 생성되게 함.
+    // 내용도 일단 모두 제거한다.
+    tabConArr.forEach(function(item){
+        item.classList.remove("community-visible-active")
+    })
+    tabConArr[tabFocusIndex].classList.add("community-visible-active")
 }

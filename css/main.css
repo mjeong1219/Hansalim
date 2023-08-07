@@ -56,6 +56,106 @@ body{
     height: 100%;
 }
 
+/* 고정메뉴 */
+.fix-menu{
+    position: fixed;
+    right: 0;
+    top: 175px;
+    display: block;
+    width: 85px;
+    z-index: 99999;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 10%);
+    padding: 15px 10px 29px 10px;
+    overflow: hidden;
+}
+
+.fix-list{
+    position: relative;
+    display: block;
+}
+
+.fix-list > li{
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+
+.fix-list > li > a{
+    position: relative;
+    display: block;
+}
+
+.fix-list > li > a::after{
+    content: "";
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 32px;
+    background: url("../images/icoFloating.png") no-repeat;
+}
+
+.fix-list > li span{
+    position: relative;
+    display: block;
+}
+
+.fix-login::after{
+    background-position: 0 0;
+}
+
+.fix-shop::after{
+    background-position: 0 -32px !important;
+}
+
+.good-recent{
+    display: inline-block !important;
+    width: 50px !important;
+    height: 50px !important;
+    overflow: hidden;
+}
+
+/* 뒷편 아이콘 없애기 */
+.good-recent::after{
+    content: none !important;
+}
+
+.good-recent img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.fix-qa::after{
+    background-position: 0 calc(-32px * 2) !important;
+}
+
+.fix-talk::after{
+    background-position: 0 calc(-32px * 3) !important;
+}
+
+.fix-top{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    line-height: 29px;
+    border: 0;
+    cursor: pointer;
+    font-size: 11px;
+    background-color: #000;
+    color: #fff;
+    text-transform: uppercase;
+}
+
 /* section 레이아웃 공통 패딩 */
 .wrap > section{
     padding: 80px 0;
@@ -186,6 +286,7 @@ body{
     background-color: #fff;
     border-bottom: 1px solid #eee;
     z-index: 999;
+    transition: top 0.2s;
 }
 
 .header-top{
@@ -742,7 +843,7 @@ body{
     visibility: hidden;
 }
 
-.more-menu-bt.active::after{
+.more-menu-bt::after{
     content: "접기";
     position: absolute;
     display: inline-block;
@@ -975,7 +1076,6 @@ body{
 .today{
     position: relative;
     display: block;
-    background-color: #ff9933;
 }
 
 .good-wrap{
@@ -1029,7 +1129,6 @@ body{
     display: block;
     width: 100%;
     height: 60px;
-    background-color: #f7e5d3;
     padding: 15px;
     padding-left: 0;
     font-size: 17px;
@@ -1099,10 +1198,18 @@ body{
 .sale{
     position: relative;
     display: block;
+    background-color: #f8f9ff;
 }
 
 .sale .slide-control{
     margin-top: 100px;
+}
+
+.sale .good-info,
+.sale .good-info-price,
+.recommend .good-info,
+.recommend .good-info-price{
+    text-indent: 15px;
 }
 
 /* 신상품 */
@@ -1580,19 +1687,27 @@ body{
 
 /* smooth scrollbar 적용 */
 .scrollbar-thumb {
-    width: 5px !important;
+    width: 8px !important;
     background: rgba(0, 0, 0, 0.5) !important;
     border-radius: 4px !important;
 }
 
 .season-good-list::-webkit-scrollbar-track {
     width: 8px !important;
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: transparent !important;
     border-radius: 4px !important;
 }
 
 .season-good-list::-webkit-scrollbar-thumb {
     background: rgba(222, 222, 222, 0) !important;
+}
+
+.season-good-list{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: calc(85px * 3);
+    overflow: auto;
 }
 
 .season-good-list li {
@@ -1703,4 +1818,616 @@ body{
 
 .buy-good em {
     font-style: normal;
+}
+
+
+/* 이용후기 */
+.review{
+    position: relative;
+    display: block;
+    background-color: #fcf6f2;
+}
+
+.review .slide-control{
+    margin-top: 25px;
+}
+
+.review-slide{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 235px;
+}
+
+.review-box{
+    position: relative;
+    display: block;
+    width: 290px;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.review-box a{
+    display: block;
+}
+
+.review-box-desc{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 66px;
+    margin-bottom: 15px;
+}
+
+.review-box-title{
+    position: relative;
+    display: block;
+    font-size: 17px;
+    /* 말줄임 시작 */
+    width: 165px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.review-box-star{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    padding-left: 25px;
+}
+
+.review-box-star::before{
+    content: "";
+    background: url("../images/icoRating.png") no-repeat;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 18px;
+    height: 18px;
+}
+
+.review-box-img{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 66px;
+    height: 66px;
+    overflow: hidden;
+}
+
+.review-box-img img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.review-box-txt{
+    display: block;
+    width: 100%;
+    font-size: 13px;
+    /* 2줄 말줄임 시작 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 20px;
+}
+
+.review-box-user{
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    bottom: 20px;
+}
+
+
+/* 커뮤니티 */
+.community {
+    position: relative;
+    display: block;
+}
+
+.community-notice {
+    position: relative;
+    display: block;
+    width: calc(100% / 3);
+    /* background-color: #76bd42; */
+    padding: 0 40px;
+    float: left;
+}
+
+.community-notice dl {
+    position: relative;
+    display: block;
+}
+
+.community-notice dl > dt {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    float: left;
+}
+
+.community-notice dl > dt:nth-child(1) {
+    padding-left: 0;
+    /* background-color: pink; */
+}
+
+.community-notice dl > dt:nth-child(1)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 1px;
+    height: 18px;
+    background-color: #e5e5e5;
+}
+
+.community-bt {
+    position: relative;
+    display: block;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+    font-size: 20px;
+    color: #999;
+}
+
+.community-bt-active {
+    color: #000;
+    font-weight: 700;
+}
+
+.community-info {
+    position: relative;
+    display: block;
+    width: calc(100% / 3);
+    padding: 0 40px;
+    float: left;
+}
+
+.community-visible-active {
+    display: block !important;
+}
+
+.notice-list {
+    position: relative;
+    display: block;
+}
+
+.notice-list > li {
+    position: relative;
+    display: block;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.notice-list > li > a {
+    position: relative;
+    display: block;
+    font-size: 13px;
+}
+
+.notice-list > li > a > span {
+    position: relative;
+    display: inline-block;
+    /* 말줄임 */
+    width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.notice-list > li > a > em {
+    position: relative;
+    display: inline-block;
+    width: calc(100% - 240px);
+    color: #999;
+    font-style: normal;
+    text-align: right;
+    vertical-align: 2px;
+}
+
+.community-info h3 {
+    position: relative;
+    display: block;
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.tel {
+    position: relative;
+    display: block;
+    font-size: 32px;
+    color: #76bd42;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.community-info-list {
+    position: relative;
+    display: block;
+}
+
+.community-info-list li {
+    position: relative;
+    display: block;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.t1 {
+    color: #666;
+}
+
+.t2 {
+    color: #000;
+}
+
+.t3 {
+    color: #000;
+}
+
+.community-info-list > li > a {
+    font-weight: 700;
+}
+
+.community-info-list > li > b {
+    font-weight: 700;
+}
+
+.community-help {
+    position: relative;
+    display: block;
+    width: calc(100% / 3);
+    padding: 0 40px;
+    float: right;
+}
+
+.community-help h3 {
+    position: relative;
+    display: block;
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.community-notice > dl > dd {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    display: none;
+    width: 100%;
+}
+
+.community-help-list {
+    position: relative;
+    display: block;
+}
+
+.community-help-list > li {
+    position: relative;
+    display: block;
+    width: calc(50% - 5px);
+    margin-bottom: 10px;
+    /* background-color: #ececec; */
+}
+
+.community-help-list > li:nth-child(2n + 1) {
+    float: left;
+}
+
+.community-help-list > li:nth-child(2n) {
+    float: right;
+}
+
+.community-help-list > li > a {
+    position: relative;
+    display: block;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    padding: 0 12px;
+    line-height: 36px;
+    font-size: 13px;
+    color: #333;
+}
+
+.community-help-list > li > a:after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    right: 10px;
+    top: 10px;
+    background: url("../images/icoFaq.png") no-repeat;
+}
+
+.community-line:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 1px;
+    height: 190px;
+    background-color: #ddd;
+}
+
+
+/* 하단 */
+.footer{
+    position: relative;
+    display: block;
+}
+
+.family-box{
+    position: absolute;
+    left: 0;
+    bottom: calc(65px + 144px);
+    width: 100%;
+    height: 330px;
+    overflow: hidden;
+    visibility: hidden;
+}
+/* visibility: hidden을 줘도 아래 요소들이 보이는 이유는
+아래 요소가 absolute이며 그로인해 박스 밖으로 빠져 나왔기 때문에
+보인다. */
+
+.family{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    display: block;
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 40px 0;
+    visibility: hidden;
+    transition: top 0.5s, visibility 0.5s;
+}
+
+.family.active{
+    visibility: visible;
+    top: 0;
+}
+
+.family-list{
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 50px);
+}
+
+.family-close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: url("../images/btnFamilyClose.png") no-repeat center;
+    border: 0;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.family-title{
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #76bd42;
+    margin-bottom: 20px;
+}
+
+.family-area{
+    font-size: 13px;
+    line-height: 22px;
+}
+
+.footer-top{
+    position: relative;
+    display: block;
+    border-top: 1px solid #f2f2f2;
+    background-color: #fff;
+}
+
+.footer-menu{
+    position: relative;
+    display: block;
+    padding: 20px 0;
+    float: left;
+}
+
+.footer-menu > li{
+    position: relative;
+    display: block;
+    float: left;
+    padding: 0 10px;
+}
+
+.footer-menu > li::after{
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 2px;
+    background-color: #a9b0b8;
+}
+
+.footer-menu > li:first-child{
+    padding-left: 0;
+}
+
+.footer-menu > li:last-child{
+    padding-right: 0;
+}
+
+.footer-menu > li:last-child::after{
+    content: none;
+}
+
+.footer-link.active{
+    background-color: #f5f5f5;
+}
+
+.footer-link{
+    position: relative;
+    display: block;
+    border: 0;
+    cursor: pointer;
+    background-color: #fff;
+    line-height: 64px;
+    float: right;
+    font-size: 13px;
+    color: #666;
+    padding: 0 15px;
+}
+
+.blank{
+    display: inline-block;
+    width: 30px;
+    height: 10px;
+}
+
+.footer-link::after{
+    content: "";
+    display: inline-block;
+    position: relative;
+    width: 12px;
+    height: 12px;
+    background: url("../images/btnMore.png") no-repeat;
+    vertical-align: 0;
+}
+
+.footer-main{
+    position: relative;
+    display: block;
+    border-top: 1px solid #f2f2f2;
+    padding: 20px 0;
+    background-color: #fff;
+}
+
+.footer-copy{
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.copy-list{
+    position: relative;
+    display: block;
+}
+
+.copy-list > li{
+    position: relative;
+    display: block;
+    font-size: 13px;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.copy-list > li > span{
+    position: relative;
+    display: inline-block;
+    padding: 0 8px;
+}
+
+.copy-list > li > span::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: 1px;
+    height: 10px;
+    background-color: #e5e5e5;
+}
+
+.copy-list > li > span:first-child{
+    padding-left: 0;
+}
+
+.copy-list > li > span:last-child{
+    padding-left: 0;
+}
+
+.copy-list > li > span:last-child:after{
+    content: none;
+}
+
+.copy-txt{
+    position: relative;
+    display: block;
+    color: #999;
+    font-size: 11px;
+    margin-top: 20px;
+}
+
+.footer-sns{
+    position: relative;
+    display: block;
+    float: right;
+}
+
+.sns-list{
+    position: relative;
+    display: block;
+}
+
+.sns-list > li{
+    float: left;
+    padding: 0 5px;
+}
+
+.sns-list > li:first-child{
+    padding-left: 0;
+}
+
+.sns-list > li:last-child{
+    padding-left: 0;
+}
+
+.sns-list > li > a{
+    position: relative;
+    display: block;
+    width: 26px;
+    height: 26px;
+    background: url("../images/ftSns.png") no-repeat;
+}
+
+.is{
+    background-position: 0 -26px !important;
+}
+
+.fb{
+    background-position: 0 0 !important;
+}
+
+.nb{
+    background-position: 0 calc(-26px * 2) !important;
+}
+
+.yt{
+    background-position: 0 calc(-26px * 3) !important;
+}
+
+.kk{
+    background-position: 0 calc(-26px * 4) !important;
 }
