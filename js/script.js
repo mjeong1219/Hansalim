@@ -335,7 +335,6 @@ function showTodayGood() {
             <!-- 제품이미지 -->
             <a href="${item.link}" class="good-img">
                 <img src="../images/${item.pic}" alt="${item.name}">
-                <span class="good-type">${item.tag}</span>
             </a>
             <!-- 제품정보 -->
             <a href="${item.link}" class="good-info">
@@ -364,7 +363,6 @@ function showTodayGood() {
             <!-- 제품이미지 -->
             <a href="${item.link}" class="good-img">
                 <img src="../images/${item.pic}" alt="${item.name}">
-                <span class="good-type">${item.tag}</span>
             </a>
             <!-- 제품정보 -->
             <a href="${item.link}" class="good-info">
@@ -502,7 +500,6 @@ function showRecommendGood(){
                 <!-- 제품이미지 -->
                 <a href="${item.link}" class="good-img">
                     <img src="../images/${item.pic}" alt="${item.name}">
-                    <span class="good-type">${item.tag}</span>
                 </a>
                 <!-- 제품정보 -->
                 <a href="${item.link}" class="good-info">

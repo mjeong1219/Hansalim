@@ -331,6 +331,7 @@ body{
     display: block;
     float: right;
     padding-top: 3px;
+    top: -20px;
 }
 
 .track{
@@ -465,9 +466,9 @@ body{
 .gnb > li > a{
     position: relative;
     display: block;
-    font-size: 17px;
+    font-size: 16px;
     color: #000;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 19px;
 }
 
@@ -489,9 +490,9 @@ body{
 .all-bt{
     position: relative;
     display: block;
-    font-size: 17px;
+    font-size: 16px;
     color: #000;
-    font-weight: 500;
+    font-weight: 700;
     border: 0;
     background-color: transparent;
     line-height: 19px;
@@ -738,9 +739,9 @@ body{
 .join-bt{
     position: relative;
     display: block;
-    font-size: 17px;
+    font-size: 16px;
     color: #000;
-    font-weight: 500;
+    font-weight: 700;
     cursor: pointer;
     border: 0;
     background-color: transparent;
@@ -1531,8 +1532,8 @@ body{
 .brand-info-value {
     position: relative;
     display: block;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .brand .section-bt{
