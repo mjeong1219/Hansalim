@@ -274,7 +274,7 @@ function showVisual(){
         <div class="swiper-slide">
             <div class="visual-slide-page">
                 <a href="${item.link}">
-                    <img src="../images/${item.pic}" alt="${item.name}"/>
+                    <img src="/images/${item.pic}" alt="${item.name}"/>
                 </a>
             </div>
         </div>`;

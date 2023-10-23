@@ -81,7 +81,8 @@ body{
     position: relative;
     display: block;
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
+    text-align: center;
     white-space: nowrap;
     margin-bottom: 10px;
 }
