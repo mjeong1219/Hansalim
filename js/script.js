@@ -334,7 +334,7 @@ function showTodayGood() {
         <div class="good-box">
             <!-- 제품이미지 -->
             <a href="${item.link}" class="good-img">
-                <img src="../images/${item.pic}" alt="${item.name}">
+                <img src="/images/${item.pic}" alt="${item.name}">
             </a>
             <!-- 제품정보 -->
             <a href="${item.link}" class="good-info">
@@ -362,7 +362,7 @@ function showTodayGood() {
         <div class="good-box">
             <!-- 제품이미지 -->
             <a href="${item.link}" class="good-img">
-                <img src="../images/${item.pic}" alt="${item.name}">
+                <img src="/images/${item.pic}" alt="${item.name}">
             </a>
             <!-- 제품정보 -->
             <a href="${item.link}" class="good-info">
