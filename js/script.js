@@ -334,7 +334,7 @@ function showTodayGood() {
         <div class="good-box">
             <!-- 제품이미지 -->
             <a href="${item.link}" class="good-img">
-                <img src="/images/${item.pic}" alt="${item.name}">
+                <img src="images/${item.pic}" alt="${item.name}">
             </a>
             <!-- 제품정보 -->
             <a href="${item.link}" class="good-info">
@@ -362,7 +362,7 @@ function showTodayGood() {
         <div class="good-box">
             <!-- 제품이미지 -->
             <a href="${item.link}" class="good-img">
-                <img src="/images/${item.pic}" alt="${item.name}">
+                <img src="images/${item.pic}" alt="${item.name}">
             </a>
             <!-- 제품정보 -->
             <a href="${item.link}" class="good-info">
@@ -400,7 +400,7 @@ function showSaleGood(){
             <div class="good-box">
                 <!-- 제품이미지 -->
                 <a href="${item.link}" class="good-img">
-                    <img src="../images/${item.pic}" alt="${item.name}">
+                    <img src="images/${item.pic}" alt="${item.name}">
                     <span class="good-type">${item.tag}</span>
                 </a>
                 <!-- 제품정보 -->
@@ -448,7 +448,7 @@ function showNewGood(){
     let obj = NEW_GOOD[0]; // obj라는 변수를 0번째로 선언하고 불러옴
     let newGoodFirst = `
     <a href="${obj.link}" class="new-img">
-        <img src="../images/${obj.pic}" alt="${obj.title}"/>
+        <img src="images/${obj.pic}" alt="${obj.title}"/>
     </a>
     <a href="${obj.link}" class="new-title">
         ${obj.title}
@@ -469,7 +469,7 @@ function showNewGood(){
             tag = `
             <div class="new-box">
                 <a href="${item.link}" class="new-box-img">
-                    <img src="../images/${item.pic}" alt="${item.title}"/>
+                    <img src="images/${item.pic}" alt="${item.title}"/>
                 </a>
                 <a href="${item.link}" class="new-box-title">
                     ${item.title}
@@ -499,7 +499,7 @@ function showRecommendGood(){
             <div class="good-box">
                 <!-- 제품이미지 -->
                 <a href="${item.link}" class="good-img">
-                    <img src="../images/${item.pic}" alt="${item.name}">
+                    <img src="images/${item.pic}" alt="${item.name}">
                 </a>
                 <!-- 제품정보 -->
                 <a href="${item.link}" class="good-info">
@@ -554,7 +554,7 @@ function showPopularIcon(){
             <a href = "${item.link}">
                 <span class = "popular-cate-icon"
                 style = "
-                background : url('../images/${item.icon}') no-repeat;
+                background : url('images/${item.icon}') no-repeat;
                 background-position : 0px 0px;">
                 </span>
                 <span class = "popular-cate-name">${item.txt}</span>
@@ -653,7 +653,7 @@ function showBrandArr(){
         <div class="swiper-slide">
             <div class="brand-box">
                 <a href="${item.link}">
-                    <img src="../images/${item.pic}" alt="${item.name}"/>
+                    <img src="images/${item.pic}" alt="${item.name}"/>
                     <p>${item.name}</p>
                     <ul class="brand-info clearfix">
                         <li>
@@ -704,7 +704,7 @@ function showBannerArr() {
         let tag = `
         <div class="swiper-slide">
             <a href="${item.link}">
-                <img src = "../images/${item.image}" alt ="${item.title}"/>
+                <img src = "images/${item.image}" alt ="${item.title}"/>
             </a>
         </div>
         `;
@@ -754,7 +754,7 @@ function showSeasonGood(item,index){
                     />
                     <label for="ch${index}" class="season-label"></label>
                     <a href="${item.link}" class="season-good-img">
-                        <img src="../images/${item.pic}" alt="${item.title}"/>
+                        <img src="images/${item.pic}" alt="${item.title}"/>
                     </a>
                     <p class= "season-good-info">
                         <a href="${item.link}" class="season-good-title">${item.title}</a>
@@ -853,7 +853,7 @@ function showReview() {
                         </span>
                         <span class="review-box-star"> ${item.star} </span>
                         <span class="review-box-img">
-                            <img src="../images/${item.pic}" alt="${item.title}"/>
+                            <img src="images/${item.pic}" alt="${item.title}"/>
                         </span>
                     </div>
                     <p class="review-box-txt">
